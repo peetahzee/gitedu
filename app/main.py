@@ -38,8 +38,9 @@ def gh_proxy(verb, endpoint):
 			'Accept': 'application/json',
 			'Authorization': 'token ' + session['github_token']
 		}
-		requests.request(request.method, endpoint, data=request.values,
+		r = requests.request(request.method, endpoint, data=request.values,
 												   headers=headers)
+		return r.body
 	else:
 		return redirect(url_for('login'))
 
