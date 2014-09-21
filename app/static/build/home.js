@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 
 var OrgListRow = React.createClass({displayName: 'OrgListRow',
+    handleClick: function() {
+        alert(this.props.org.name);
+    },
     render: function() {
-        var boundClick = function() {
-            alert(this.props.org.name);
-        }
-        return (React.DOM.li({onClick: "{boundClick}", class: "org"}, this.props.org.name));
+        return (React.DOM.li({onClick: "{this.handleClick}", class: "org"}, this.props.org.name));
     }
 });
 
