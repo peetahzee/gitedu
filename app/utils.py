@@ -10,8 +10,7 @@ def github_post(url, payload, headers={}):
 	print url
 	print payload
 	print headers
-	r = requests.post(url,
-										data=simplejson.dumps(payload))
+	r = requests.post(url, data=payload)
 	print r
 	result = simplejson.loads(r.content)
 
