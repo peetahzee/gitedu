@@ -34,7 +34,12 @@ def oauth_authorize():
 def gh_proxy(verb, endpoint):
 	if session['logged_in']:
 		print request.values
-		requests.request(request.method, endpoint, request.values)
+		default_headers = {
+			'Accept': 'application/json',
+			'Authorization': 'token ' + session['github_token']
+		}
+		requests.request(request.method, endpoint, data=request.values,
+												   headers=headers)
 	else:
 		return redirect(url_for('login'))
 
