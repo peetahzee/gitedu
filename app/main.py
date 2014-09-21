@@ -34,16 +34,15 @@ def oauth_authorize():
 @app.route('/gh/<endpoint>')
 def gh_proxy(endpoint):
 	if session['logged_in']:
-		print request.values
 		headers = {
 			'Accept': 'application/json',
 			'Authorization': 'token ' + session['github_token']
 		}
 		r = requests.request(request.method, 
 							 url='https://api.github.com/' + endpoint,
-							 data=request.values,
+							 data=request.values['data'],
 							 headers=headers)
-		return r.body
+		return r.content
 	else:
 		return redirect(url_for('login'))
 
