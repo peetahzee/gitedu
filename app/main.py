@@ -18,9 +18,9 @@ def login():
 @app.route('/oauth-authorize')
 def oauth_authorize():
 	token_result = utils.github_post('https://github.com/login/oauth/access_token', {
-		client_id: constants.CLIENT_ID,
-		client_secret: constants.CLIENT_SECRET,
-		code: request.values['code']
+		'client_id': constants.CLIENT_ID,
+		'client_secret': constants.CLIENT_SECRET,
+		'code': request.values['code']
 	})
 	if 'access_token' in token_result:
 		session['github_token'] = token_result['access_token']
