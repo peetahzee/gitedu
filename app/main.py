@@ -23,7 +23,7 @@ def oauth_authorize():
 		'code': request.values['code']
 	})
 
-	if token_result is nil or 'access_token' not in token_result:
+	if token_result is None or 'access_token' not in token_result:
 		return redirect(url_for('login'))
 	
 	session['logged_in'] = True
