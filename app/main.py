@@ -24,6 +24,7 @@ def oauth_authorize():
 	})
 	if 'access_token' in token_result:
 		session['github_token'] = token_result['access_token']
+
 	return render_template('complete_reg.html')
 
 
