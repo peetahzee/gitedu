@@ -1,5 +1,4 @@
 from flask import Flask, session, render_template, request, redirect, url_for
-import requests
 import constants
 import utils
 
@@ -35,7 +34,7 @@ def oauth_authorize():
 def gh_proxy(endpoint):
 	if session['logged_in']:
 		print request.values
-		default_headers = {
+		headers = {
 			'Accept': 'application/json',
 			'Authorization': 'token ' + session['github_token']
 		}
