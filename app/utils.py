@@ -1,4 +1,5 @@
 import requests
+import simplejson
 
 def github_post(url, payload, headers={}):
 	default_headers = {
