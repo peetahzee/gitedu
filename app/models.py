@@ -1,6 +1,8 @@
-from sqlalchemy import Column, Integer, String, DateTime, Sequence, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, Sequence, Float, ForeignKey, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 import datetime
+
+import constants
 
 base = declarative_base()
 
@@ -25,3 +27,11 @@ class Org(base):
 
     def __repr__(self):
         return "<Org(id='%s', name='%s')>" % (self.id, self.name)
+
+def create_all():
+    tables = [User, Org]
+
+    for table in tables:
+        print "Creating metadata for " + table.__name__
+        engine = create_engine(constants.DB_URL)
+        table.metadata.create_all(engine)
