@@ -4,6 +4,9 @@ var OrgListRow = React.createClass({displayName: 'OrgListRow',
     render: function() {
         console.log(this.props);
         return (React.DOM.li({class: "org"}, this.props.org.name));
+    },
+    onClick: function() {
+        alert(this.props.org.name);
     }
 });
 
@@ -21,6 +24,15 @@ var OrgList = React.createClass({displayName: 'OrgList',
         );
     }
 });
+
+var OrgView = React.createClass({displayName: 'OrgView',
+    render: function() {
+        var repos = [];
+        this.props.repos.forEach(function(org) {
+
+        });
+    }
+})
 
 $(document).ready(function() {
     $.getJSON('/gh/user/orgs').done(function(json) {
