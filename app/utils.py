@@ -9,6 +9,7 @@ def github_post(url, payload, headers={}):
 	r = requests.post(url,
 										data=simplejson.dumps(payload),
 										headers=headers)
+	print r
 	result = simplejson.loads(r.content)
 
 	if r.status_code == 201:
