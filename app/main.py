@@ -1,4 +1,4 @@
-from flask import Flask, session, render_template, request
+from flask import Flask, session, render_template, request, redirect, url_for
 import constants
 import utils
 
@@ -22,9 +22,21 @@ def oauth_authorize():
 		'client_secret': constants.CLIENT_SECRET,
 		'code': request.values['code']
 	})
-	if 'access_token' in token_result:
-		session['github_token'] = token_result['access_token']
+
+	if token_result is nil or 'access_token' not in token_result:
+		return redirect(url_for('login'))
+	
+	session['logged_in'] = True
+	session['github_token'] = token_result['access_token']
 	return render_template('complete_reg.html')
+
+@app.route('/gh/<endpoint>')
+def gh_proxy(verb, endpoint):
+	if session['logged_in']:
+		print request.values
+		requests.request(request.method, endpoint, request.values)
+	else:
+		return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
