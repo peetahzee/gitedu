@@ -46,7 +46,7 @@ def confirm_reg():
 	session.commit()
 
 
-@app.route('/gh/<endpoint:fullurl>')
+@app.route('/gh/<path:endpoint>')
 def gh_proxy(endpoint):
 	if session['logged_in']:
 		headers = {
