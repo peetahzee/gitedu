@@ -31,7 +31,7 @@ def oauth_authorize():
 	return render_template('complete_reg.html')
 
 @app.route('/gh/<endpoint>')
-def gh_proxy(verb, endpoint):
+def gh_proxy(endpoint):
 	if session['logged_in']:
 		print request.values
 		default_headers = {
