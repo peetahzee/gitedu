@@ -22,9 +22,14 @@ var OrgList = React.createClass({
     }
 });
 
-var ORGS = [
-  { name: 'usc-csci104-fall2014' },
-  { name: 'usc-csci104-spring2014' }
-];
- 
-React.renderComponent(<OrgList orgs={ORGS} />, $('#left_container')[0]);
+$(document).ready(function() {
+    $.getJSON('/gh/users/orgs').done(function(json) {
+        ORGS = [];
+        json.forEach(function(org) {
+            orgs.push({name: org.login, id: org.id })
+        });
+
+        React.renderComponent(<OrgList orgs={ORGS} />, $('#left_container')[0]);
+    })
+})
+
