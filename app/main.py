@@ -3,6 +3,7 @@ import constants
 import utils
 
 app = Flask(__name__)
+app.secret_key = constants.COOKIE_SECRET
 
 @app.route('/')
 def hello_world():
