@@ -42,7 +42,7 @@ def gh_proxy(endpoint):
 							 url='https://api.github.com/' + endpoint,
 							 data=request.values['data'],
 							 headers=headers)
-		return r.content
+		return 'hi' + r.content
 	else:
 		return redirect(url_for('login'))
 
