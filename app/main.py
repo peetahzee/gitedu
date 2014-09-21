@@ -41,7 +41,6 @@ def gh_proxy(endpoint):
 		print session['github_token']
 		r = requests.request('get', 
 							 url='https://api.github.com/' + endpoint,
-							 data=request.values['data'],
 							 headers=headers)
 		print r
 		print r.content
