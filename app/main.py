@@ -2,13 +2,15 @@ from flask import Flask, session, render_template, request, redirect, url_for
 import requests
 import constants
 import utils
+from db import get_db
+from models import User
 
 app = Flask(__name__)
 app.secret_key = constants.COOKIE_SECRET
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return render_template('index.html')
 
 
 @app.route('/login')
@@ -31,7 +33,20 @@ def oauth_authorize():
 	session['github_token'] = token_result['access_token']
 	return render_template('complete_reg.html')
 
-@app.route('/gh/<endpoint>')
+@app.route('/oauth-authorize/confirm')
+def confirm_reg():
+	user_info = simplejson.load(gh_proxy('user'))
+
+	db = get_db()
+	user = User(name=request.values('name'),
+		        email=request.values('email'),
+		        username=user_info['login'])
+
+	session.add(user)
+	session.commit()
+
+
+@app.route('/gh/<endpoint:fullurl>')
 def gh_proxy(endpoint):
 	if session['logged_in']:
 		headers = {
