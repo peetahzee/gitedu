@@ -88,9 +88,14 @@ input:focus {
 
 #reg-profpic {
 	float: left;
-	width: 75px;
-	height: 75px;
+	width: 180px;
+	height: 180px;
 	margin-right: 10px;
+}
+
+#reg-profpic {
+	width: 100%;
+	height: 100%;
 }
 
 .big-gap-top {
