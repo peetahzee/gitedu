@@ -11,7 +11,7 @@ def github_post(url, payload, headers={}):
 	print payload
 	print headers
 	r = requests.post(url,
-										data=simplejson.dumps(payload),
+										data=payload,
 										headers=headers)
 	result = simplejson.loads(r.content)
 
