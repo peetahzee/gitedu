@@ -24,12 +24,12 @@ var OrgList = React.createClass({
 
 $(document).ready(function() {
     $.getJSON('/gh/user/orgs').done(function(json) {
-        ORGS = [];
+        orgs = [];
         json.forEach(function(org) {
             orgs.push({name: org.login, id: org.id })
         });
 
-        React.renderComponent(<OrgList orgs={ORGS} />, $('#left_container')[0]);
+        React.renderComponent(<OrgList orgs={orgs} />, $('#left_container')[0]);
     })
 })
 
