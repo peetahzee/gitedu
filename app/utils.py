@@ -14,7 +14,7 @@ def github_post(url, payload, headers={}):
 	print r.content
 	result = simplejson.loads(r.content)
 
-	if r.status_code == 201:
+	if r.status_code == 200:
 		return result
 	else:
 		if 'errors' in result:
