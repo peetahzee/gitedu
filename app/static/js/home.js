@@ -2,8 +2,7 @@
 
 var OrgListRow = React.createClass({
     render: function() {
-        console.log(this.props);
-        return (<li class="org">{this.props.org.name}</li>);
+        return (<li onClick="{this.onClick}" class="org">{this.props.org.name}</li>);
     },
     onClick: function() {
         alert(this.props.org.name);
